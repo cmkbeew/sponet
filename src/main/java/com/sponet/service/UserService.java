@@ -69,15 +69,18 @@ public class UserService {
     }
 
     // 유저 정보 수정
-    public Long updateInfo(Long id, UpdateRequest updateRequest) {
+    public void updateInfo(Long id, UpdateRequest updateRequest) {
         // 회원 정보 찾아오기
         UserEntity loginUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다. id= " + id));
 
         loginUser.update(updateRequest.getBirth(), updateRequest.getGrade());
 
-        userRepository.save(loginUser);
+        String enteredBirth = updateRequest.getBirth();
 
-        return id;
+        // 생년월일(6자리) 형식에 맞지 않으면 유저 정보 업데이트를 하지 않음.
+        if (enteredBirth.length() == 6) {
+            userRepository.save(loginUser);
+        }
     }
 
     // 비밀번호 변경

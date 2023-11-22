@@ -6,8 +6,8 @@ import com.sponet.domain.user.request.LoginRequest;
 import com.sponet.domain.user.request.UpdatePasswordRequest;
 import com.sponet.domain.user.request.UpdateRequest;
 import com.sponet.service.UserService;
-import com.sponet.validator.join.CheckLoginIdValidator;
-import com.sponet.validator.join.CheckPasswordEqualValidator;
+import com.sponet.validator.CheckLoginIdValidator;
+import com.sponet.validator.CheckPasswordEqualValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -83,8 +83,7 @@ public class UserController {
     }
 
     @PostMapping("updateInfo")
-    public String updateInfo(@ModelAttribute UpdateRequest updateRequest, Errors errors, Long id, String loginId) {
-
+    public String updateInfo(@ModelAttribute UpdateRequest updateRequest, Long id) {
         userService.updateInfo(id, updateRequest);
 
         return "redirect:/";

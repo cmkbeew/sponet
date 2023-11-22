@@ -1,4 +1,4 @@
-package com.sponet.validator.join;
+package com.sponet.validator;
 
 import com.sponet.domain.user.request.JoinRequest;
 import com.sponet.repository.UserRepository;
