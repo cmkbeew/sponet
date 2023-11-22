@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    open-in-view: false
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/sponet
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf3:
+    decoupled-logic: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views
+#      suffix: .jsp

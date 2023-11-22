@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선수조회 페이지</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        body{
+            background:#eee;
+
+        }
+        .search-result .title h3 {
+            margin: 0 0 15px;
+            color: #333;
+        }
+        .search-result .title p {
+            font-size: 12px;
+            color: #333;
+        }
+        .well {
+            border: 0;
+            padding: 20px;
+            min-height: 63px;
+            background: #fff;
+            box-shadow: none;
+            border-radius: 3px;
+            position: relative;
+            max-height: 100000px;
+            border-bottom: 2px solid #ccc;
+            transition: max-height 0.5s ease;
+            -o-transition: max-height 0.5s ease;
+            -ms-transition: max-height 0.5s ease;
+            -moz-transition: max-height 0.5s ease;
+            -webkit-transition: max-height 0.5s ease;
+        }
+        .form-control {
+            height: 45px;
+            padding: 10px;
+            font-size: 16px;
+            box-shadow: none;
+            border-radius: 0;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<!-- HEADER -->
+<!--    <header id="header"></header>-->
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/competition" class="nav-link px-2 text-white">대회</a></li>
+                <li><a href="/competition/calendar" class="nav-link px-2 text-white">대회 캘린더</a></li>
+                <li><a href="/player" class="nav-link px-2 text-white">선수 조회</a></li>
+                <li><a href="/articles" class="nav-link px-2 text-white">게시판</a></li>
+            </ul>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">로그인</button>
+                <button type="button" class="btn btn-warning">회원가입</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="well search-result">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-btn">
+              <button class="btn btn-info btn-lg" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search
+                    </button>
+            </span>
+                </div>
+            </div>
+            <div class="well search-result">
+                <div class="row">
+                    <a href="#">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                            <img class="img-responsive" src="" alt="이미지">
+                        </div>
+                        <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                            <h3>Result name one</h3>
+                            <p>Ut quis libero id orci semper porta ac vel ante. In nec laoreet sapien. Nunc hendrerit ligula at massa sodales, ullamcorper rutrum orci semper.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="well search-result">
+                <div class="row">
+                    <a href="#">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                            <img class="img-responsive" src="https://www.bootdey.com/image/400x200/FA8072/000000" alt="">
+                        </div>
+                        <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                            <h3>Blueberry Sport</h3>
+                            <p>Nulla rhoncus lacus tortor, vel tincidunt dolor eleifend et. Ut consequat elit quam, iaculis volutpat ipsum fermentum pulvinar. Pellentesque nec sem vel arcu ornare faucibus.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="well search-result">
+                <div class="row">
+                    <a href="#">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+                            <img class="img-responsive" src="" alt="이미지">
+                        </div>
+                        <div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+                            <h3>Power Thirst</h3>
+                            <p>Cras nisi dolor, tristique id vehicula vitae, mollis at eros. Ut euismod sem eu tellus vestibulum, in facilisis est feugiat. Mauris sed leo sed erat vestibulum suscipit.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-info  btn-block">
+                    <i class="glyphicon glyphicon-refresh"></i>Load more...
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Company, Inc</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="/competition" class="nav-link px-2 text-body-secondary">대회</a></li>
+            <li class="nav-item"><a href="/competition/calendar" class="nav-link px-2 text-body-secondary">대회 캘린더</a></li>
+            <li class="nav-item"><a href="/player" class="nav-link px-2 text-body-secondary">선수 조회</a></li>
+            <li class="nav-item"><a href="/articles" class="nav-link px-2 text-body-secondary">게시판</a></li>
+        </ul>
+    </footer>
+</div>
+</body>
+</html>
