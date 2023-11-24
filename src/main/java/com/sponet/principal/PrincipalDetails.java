@@ -1,6 +1,6 @@
 package com.sponet.principal;
 
-import com.sponet.domain.user.UserEntity;
+import com.sponet.user.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

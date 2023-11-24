@@ -1,4 +1,4 @@
-package com.sponet.domain.user;
+package com.sponet.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.sponet.handler;
+package com.sponet.user.handler;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;

@@ -1,4 +1,4 @@
-package com.sponet.domain.user.request;
+package com.sponet.user.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

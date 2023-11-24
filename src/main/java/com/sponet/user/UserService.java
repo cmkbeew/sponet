@@ -1,11 +1,9 @@
-package com.sponet.service;
+package com.sponet.user;
 
-import com.sponet.domain.user.UserEntity;
-import com.sponet.domain.user.request.JoinRequest;
-import com.sponet.domain.user.request.LoginRequest;
-import com.sponet.domain.user.request.UpdatePasswordRequest;
-import com.sponet.domain.user.request.UpdateRequest;
-import com.sponet.repository.UserRepository;
+import com.sponet.user.request.JoinRequest;
+import com.sponet.user.request.LoginRequest;
+import com.sponet.user.request.UpdatePasswordRequest;
+import com.sponet.user.request.UpdateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -77,14 +75,14 @@ public class UserService {
 
         String enteredBirth = updateRequest.getBirth();
 
-        // 생년월일(6자리) 형식에 맞지 않으면 유저 정보 업데이트를 하지 않음.
+        // 생년월일(6자리) 형식에 맞지 않으면 유저 정보 업데이트를 하지 않음. TODO: 체크 - 문자 6자리 입력해도 저장됨
         if (enteredBirth.length() == 6) {
             userRepository.save(loginUser);
         }
     }
 
     // 비밀번호 변경
-    public Long updatePassword(Long id, UpdatePasswordRequest updatePasswordRequest) {
+    public int updatePassword(Long id, UpdatePasswordRequest updatePasswordRequest) {
         // 회원 정보 찾아오기
         Long finalId = id;
         UserEntity loginUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다. id= " + finalId));
@@ -92,30 +90,28 @@ public class UserService {
         //TODO: 에러 발생 상황에 따라 다른 처리 필요
 
         // 현재 비밀번호 일치 확인
-        String oldPassword = updatePasswordRequest.getOldPassword();
-        String newPassword = loginUser.getPassword();
+        String enteredPassword = updatePasswordRequest.getOldPassword(); // 입력한 비밀번호
+        String oldPassword = loginUser.getPassword(); // 저장되어있는 비밀번호
+        
+        // matches ==> 암호화 되지 않은 입력된 비밀번호와 저장되어있는 암호화 비밀번호를 비교하는 method
+        boolean matchPassword = passwordEncoder().matches(enteredPassword, oldPassword);
 
-        // 암호화 되지않은 입력된 비밀번호와 암호화된 비밀번호를 비교하는 method
-        boolean matchPassword = passwordEncoder().matches(oldPassword, newPassword);
 
+        // 현재 비밀번호 일치 확인
         if(!matchPassword) {
-            id = -1L;
-
-            return id;
+            return -1;
         }
 
         // 새 비밀번호와 새 비밀번호 확인 일치 확인
         if(!updatePasswordRequest.getNewPassword().equals(updatePasswordRequest.getNewPasswordCheck())) {
-            id = -1L;
-
-            return id;
+            return -2;
         }
 
         // 새 비밀번호 암호화 후 변경, 저장
         loginUser.updatePassword(passwordEncoder().encode(updatePasswordRequest.getNewPassword()));
         userRepository.save(loginUser);
 
-        return id;
+        return 1;
     }
 
     // id를 입력받아 User 리턴

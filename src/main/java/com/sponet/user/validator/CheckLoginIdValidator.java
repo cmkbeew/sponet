@@ -1,8 +1,7 @@
-package com.sponet.validator;
+package com.sponet.user.validator;
 
-import com.sponet.domain.user.request.JoinRequest;
-import com.sponet.repository.UserRepository;
-import com.sponet.validator.AbstractValidator;
+import com.sponet.user.request.JoinRequest;
+import com.sponet.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

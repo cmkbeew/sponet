@@ -1,8 +1,7 @@
-package com.sponet.controller;
+package com.sponet.competition;
 
-import com.sponet.domain.user.UserEntity;
-import com.sponet.domain.user.request.JoinRequest;
-import com.sponet.service.UserService;
+import com.sponet.user.UserEntity;
+import com.sponet.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
+@RequestMapping("/competition")
+public class CompetitionController {
 
     private final UserService userService;
 
-    @GetMapping("/")
-    public String root(Model model, Authentication auth) {
+    @GetMapping
+    public String competitionList(Model model, Authentication auth) {
         if(auth != null) {
             UserEntity loginUser = userService.getLoginUserByLoginId(auth.getName());
             if(loginUser != null){
@@ -25,11 +25,6 @@ public class MainController {
             }
         }
 
-        return "index";
-    }
-
-    @GetMapping("/player")
-    public String playerSearch() {
-        return "player/search";
+        return "/competition/competitionList";
     }
 }

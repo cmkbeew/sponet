@@ -1,10 +1,8 @@
-package com.sponet.repository;
+package com.sponet.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sponet.domain.user.UserEntity;
-
-import java.util.Optional;
+import com.sponet.user.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     boolean existsByLoginId(String loginId);

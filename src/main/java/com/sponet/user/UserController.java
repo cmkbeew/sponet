@@ -1,13 +1,11 @@
-package com.sponet.controller.user;
+package com.sponet.user;
 
-import com.sponet.domain.user.UserEntity;
-import com.sponet.domain.user.request.JoinRequest;
-import com.sponet.domain.user.request.LoginRequest;
-import com.sponet.domain.user.request.UpdatePasswordRequest;
-import com.sponet.domain.user.request.UpdateRequest;
-import com.sponet.service.UserService;
-import com.sponet.validator.CheckLoginIdValidator;
-import com.sponet.validator.CheckPasswordEqualValidator;
+import com.sponet.user.request.JoinRequest;
+import com.sponet.user.request.LoginRequest;
+import com.sponet.user.request.UpdatePasswordRequest;
+import com.sponet.user.request.UpdateRequest;
+import com.sponet.user.validator.CheckLoginIdValidator;
+import com.sponet.user.validator.CheckPasswordEqualValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -99,14 +97,10 @@ public class UserController {
     }
 
     @PostMapping("updatePassword")
-    public String updatePassword(Long id, UpdatePasswordRequest updatePasswordRequest) {
-        Long returnId = userService.updatePassword(id, updatePasswordRequest);
+    @ResponseBody // 리턴 값을 html로 response 전송하기 위해서 자바 객체로 변환시켜줌 (상단 @RestController의 역할)
+    public int updatePassword(Long id, UpdatePasswordRequest updatePasswordRequest) {
+        int check = userService.updatePassword(id, updatePasswordRequest);
 
-        if(returnId != id) {
-            // TODO: 상황에 맞는 문구를 줘야할 듯
-            return "redirect:/user/updatePassword";
-        }
-
-        return "redirect:/logout";
+        return check;
     }
 }

@@ -1,4 +1,4 @@
-package com.sponet.validator;
+package com.sponet.user.validator;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

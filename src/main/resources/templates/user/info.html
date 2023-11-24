@@ -24,13 +24,12 @@
               type: "post",
               url: "updateInfo",
               data: {"id": id, "birth": birth, "grade": grade} // controller에 넘겨줄 데이터
-          }).done(function () { // function 파라미터 (예시: data) = controller에서 return 할 데이터
+          }).done(function () {
               if (birth.length==6) {
                   swal('저장 완료', '변경사항이 저장되었습니다.', 'success')
                       .then(function (){
                           location.href = "/"; // 저장 후 메인 화면으로 이동
                       })
-
               } else {
                   swal('저장 실패', '생년월일(6자리)을 입력해주세요.', 'warning')
                       .then(function () {
@@ -39,7 +38,6 @@
               }
           });
       }
-
   </script>
 </head>
 <body>

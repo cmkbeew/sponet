@@ -1,16 +1,14 @@
-package com.sponet.domain.user.request;
+package com.sponet.user.request;
 
 import com.sponet.domain.type.UserRole;
-import com.sponet.domain.user.UserEntity;
+import com.sponet.user.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Getter
 @Setter

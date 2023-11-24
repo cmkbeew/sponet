@@ -1,7 +1,7 @@
 package com.sponet.principal;
 
-import com.sponet.domain.user.UserEntity;
-import com.sponet.repository.UserRepository;
+import com.sponet.user.UserEntity;
+import com.sponet.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

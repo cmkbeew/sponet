@@ -1,8 +1,6 @@
-package com.sponet.domain.user.request;
+package com.sponet.user.request;
 
-import com.sponet.domain.type.UserRole;
-import com.sponet.domain.user.UserEntity;
-import lombok.Builder;
+import com.sponet.user.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
