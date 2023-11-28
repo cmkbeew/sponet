@@ -87,8 +87,6 @@ public class UserService {
         Long finalId = id;
         UserEntity loginUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다. id= " + finalId));
 
-        //TODO: 에러 발생 상황에 따라 다른 처리 필요
-
         // 현재 비밀번호 일치 확인
         String enteredPassword = updatePasswordRequest.getOldPassword(); // 입력한 비밀번호
         String oldPassword = loginUser.getPassword(); // 저장되어있는 비밀번호
@@ -97,12 +95,13 @@ public class UserService {
         boolean matchPassword = passwordEncoder().matches(enteredPassword, oldPassword);
 
 
-        // 현재 비밀번호 일치 확인
+        // updatePasswordForm 에서 ajax 처리
+        // 현재 비밀번호 불일치
         if(!matchPassword) {
             return -1;
         }
 
-        // 새 비밀번호와 새 비밀번호 확인 일치 확인
+        // 새 비밀번호와 새 비밀번호 확인 불일치
         if(!updatePasswordRequest.getNewPassword().equals(updatePasswordRequest.getNewPasswordCheck())) {
             return -2;
         }
