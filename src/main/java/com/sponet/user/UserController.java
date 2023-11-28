@@ -97,7 +97,7 @@ public class UserController {
     }
 
     @PostMapping("updatePassword")
-    @ResponseBody // 리턴 값을 html로 response 전송하기 위해서 자바 객체로 변환시켜줌 (상단 @RestController의 역할)
+    @ResponseBody // 리턴 값을 html로 response 전송하기 위해서 자바 객체로 변환시켜줌 (@RestController와 같은 역할)
     public int updatePassword(Long id, UpdatePasswordRequest updatePasswordRequest) {
         int check = userService.updatePassword(id, updatePasswordRequest);
 
