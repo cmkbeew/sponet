@@ -9,9 +9,19 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/competition.css" rel="stylesheet">
 
-    <style>
+    <!-- jquery 사용 -->
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    </style>
+    <script type="text/javascript">
+        function saveCompetition() {
+            const url = "/competition/saveCompetition";
+            const name = "save competition";
+            const option = "width = 1000, height = 600, top = 100, left = 100"
+
+            window.open(url, name, option);
+        }
+    </script>
+
 </head>
 <body>
 <!-- HEADER -->
@@ -29,7 +39,6 @@
                 <li><a href="/articles" class="nav-link px-2 text-white">게시판</a></li>
             </ul>
 
-            <!-- TODO: 수정 필요 -->
             <div th:if="${loginUser == null}" class="text-end">
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href = 'user/login'">로그인</button>
                 <button type="button" class="btn btn-warning" onclick="location.href = 'user/join'">회원가입</button>
@@ -45,103 +54,45 @@
 </header>
 
 <!-- MAIN -->
-<main class="container">
-    <div class="col-xs-10 col-md-6">
-        <!-- 대회 목록 -->
-        <div class="product-content product-wrap clearfix">
-            <div class="row">
-                <div class="col-md-5 col-sm-12 col-xs-12">
-                    <div class="product-image">
-                        <img src="" alt="대회 포스터" class="img-responsive">
-                        <span class="tag2 hot">
-							HOT <!-- if 조회 수 n이상, HOT표시 -->
-						</span>
-                    </div>
-                </div>
-                <div class="col-md-7 col-sm-12 col-xs-12">
-                    <div class="product-deatil">
-                        <h5 class="name">
-                            <a href="#">
-                                대회 이름<span>장소</span>
-                            </a>
-                        </h5>
-                        <p class="price-container">
-                            <span>$99</span>
-                        </p>
-                        <span class="tag1"></span>
-                    </div>
-                    <div class="description">
-                        <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
-                    </div>
-                    <div class="product-info smart-form">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <div class="rating">
-                                    <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                    <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                    <label for="stars-rating-3"><i class="fa fa-star"></i></label>
-                                    <label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
-                                    <label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
-                                </div>
-                            </div>
-                        </div>
+<div class="container">
+    <div class="col-12 col-sm-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>대회 목록</h4>
+            </div>
+            <div style="text-align: right; margin-right: 25px">
+                <button type="button" onclick="saveCompetition()">등록</button>
+            </div>
+            <div class="card-body">
+                <div class="media-list position-relative">
+                    <div class="table-responsive" id="competition-list" tabindex="1" style="height: 400px; overflow: hidden; outline: none;">
+                        <table class="table table-hover table-xl mb-0" th:object="${competitionList}">
+                            <thead>
+                            <tr>
+                                <th class="col-8">대회 이름</th>
+                                <th>대회 일정</th>
+                                <!-- TODO: admin 계정에서만 보일 수 있게 수정 필요 -->
+                                <th class="admin-auth" style="width: 120px">관리자 권한</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="lists : ${competitionList}">
+                                <td class="text-truncate"><a href="#" th:text="${lists.competitionName}"></a></td>
+                                <td class="text-truncate" th:text="${lists.startDate} + ' ~ ' + ${lists.endDate}"></td>
+                                <!-- TODO: admin 계정에서만 보일 수 있게 수정 필요 -->
+                                <td class="admin-auth">
+                                    <button>수정</button>
+                                    <button>삭제</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end product -->
     </div>
-    <div class="col-xs-12 col-md-6">
-        <!-- product -->
-        <div class="product-content product-wrap clearfix">
-            <div class="row">
-                <div class="col-md-5 col-sm-12 col-xs-12">
-                    <div class="product-image">
-                        <img src="" alt="대회 포스터" class="img-responsive">
-                        <span class="tag2 hot">
-							HOT
-						</span>
-                    </div>
-                </div>
-                <div class="col-md-7 col-sm-12 col-xs-12">
-                    <div class="product-deatil">
-                        <h5 class="name">
-                            <a href="#">
-                                대회 이름 <span>장소</span>
-                            </a>
-                        </h5>
-                        <p class="price-container">
-                            <span>$99</span>
-                        </p>
-                        <span class="tag1"></span>
-                    </div>
-                    <div class="description">
-                        <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
-                    </div>
-                    <div class="product-info smart-form">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <div class="rating">
-                                    <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                    <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                    <label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>
-                                    <label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
-                                    <label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end product -->
-    </div>
+</div>
 
 </main>
 </body>
